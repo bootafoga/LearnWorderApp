@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LearnWorder</string>
+    <string name="app_name">LWorder</string>
     <string name="learn_words">Учить слова</string>
     <string name="base">Мой словарь</string>
     <string name="shit_happens">Shit happens</string>
@@ -13,8 +13,8 @@
     <string name="some_word">Некоторое\nслово</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rus_eng">рус-англ</string>
-    <string name="eng_rus">англ-рус</string>
+    <string name="rus_eng">родной-изучаемый</string>
+    <string name="eng_rus">изучаемый-родной</string>
     <string name="dev">dev:\ntg.me/bootafoga\n2019</string>
     <string name="phrase_today">You live a new life for every new language you speak. \nIf you know only one language, you live only once.</string>
 
