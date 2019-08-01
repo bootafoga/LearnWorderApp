@@ -50,6 +50,7 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         View layout;
         Button check, nextWord, showTranslate;
 
+
         SQLiteOpenHelper worderDatabaseHelper = new LearnWorderDatabaseHelper(inflater.getContext());
         layout = inflater.inflate(R.layout.fragment_learn_words, container, false);
 

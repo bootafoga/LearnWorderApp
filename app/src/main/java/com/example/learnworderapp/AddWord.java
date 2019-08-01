@@ -1,6 +1,7 @@
 package com.example.learnworderapp;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -54,6 +55,10 @@ public class AddWord extends AppCompatActivity {
             toast.show();
             DictionaryFragment update = new DictionaryFragment();
             LearnWordsFragment update2 = new LearnWordsFragment();
+
+            Intent intent = new Intent(this, Dictionary.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         } else {
             Toast toast = Toast.makeText(this, "Incorrect input", Toast.LENGTH_SHORT);
             toast.show();

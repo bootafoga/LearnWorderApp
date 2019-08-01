@@ -1,12 +1,17 @@
 package com.example.learnworderapp;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,7 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class DictionaryFragment extends Fragment {
+public class DictionaryFragment extends DialogFragment  {
 
     private SQLiteDatabase db;
     private Cursor cursor;
@@ -51,6 +56,12 @@ public class DictionaryFragment extends Fragment {
             wordsRecycler.setAdapter(adapter);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             wordsRecycler.setLayoutManager(layoutManager);
+
+            adapter.setListener(new WordsAdapter.Listener() {
+                public void onClick(int position) {
+                    changeWord(position);
+                }
+            });
             return wordsRecycler;
         } catch(SQLiteException e) {
             Toast toast = Toast.makeText(inflater.getContext(), "Database unavailable", Toast.LENGTH_SHORT);
@@ -59,6 +70,14 @@ public class DictionaryFragment extends Fragment {
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+       public void changeWord(int position){
+           DialogFragment newFragment = new ListDialogFragment();
+           Bundle bundle = new Bundle();
+           bundle.putInt("position", position);
+           newFragment.setArguments(bundle);
+           newFragment.show(getFragmentManager(), "missiles");
+       }
 
 
     @Override

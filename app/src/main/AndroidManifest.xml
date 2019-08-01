@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddWord"
-            android:parentActivityName=".Dictionary"
-            android:label="Добавление слова"></activity>
+        <activity android:name=".Main2Activity"></activity>
+        <activity
+            android:name=".AddWord"
+            android:label="Добавление слова"
+            android:parentActivityName=".Dictionary" />
         <activity
             android:name=".Dictionary"
             android:label="Словарь"
