@@ -17,7 +17,7 @@
 
 Если у пользователя отстутсвуют слова в базе и он открывает вкладку "Учить слова", ему выводится уведомление о том, что слова не найдены и ничего выведено не будет.
 
-![alt text](https://b.radikal.ru/b23/1908/53/79a9e04e2f45.jpg) ![alt text](https://b.radikal.ru/b01/1908/36/5a460af743ad.jpg)
+![alt text](http://c.radikal.ru/c40/1908/fb/56d8c2f6d665.jpg) ![alt text](http://d.radikal.ru/d06/1908/4f/3d265e762152.jpg)
 
 
 
