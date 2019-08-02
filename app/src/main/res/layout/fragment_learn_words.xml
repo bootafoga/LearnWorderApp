@@ -30,8 +30,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:textColor="@color/actionbar_text_color"
             android:text="@string/some_word"
+            android:textColor="@color/actionbar_text_color"
             android:textSize="35sp" />
 
         <EditText
@@ -41,15 +41,14 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="26dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:hint="@string/translated_word"
             android:textSize="30sp"
-            android:layout_marginBottom="20dp"
             android:visibility="visible" />
 
         <Button
             android:id="@+id/checkTranslate"
-            android:stateListAnimator="@null"
             style="@style/ButtonsOnFragmentWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,11 +56,12 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="48dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/buttons_options"
+            android:stateListAnimator="@null"
             android:text="@string/check"
             android:textColor="@color/buttons_text_color"
-            android:background="@drawable/buttons_options"
-            android:textSize="24sp"
-            android:layout_marginBottom="25dp"/>
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,15 +79,15 @@
 
                 <Button
                     android:id="@+id/showTranslate"
-                    android:stateListAnimator="@null"
                     style="@style/ButtonsOnFragmentWords"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:textColor="@color/buttons_text_color"
                     android:background="@drawable/buttons_options"
-                    android:text="@string/show_translate" />
+                    android:stateListAnimator="@null"
+                    android:text="@string/show_translate"
+                    android:textColor="@color/buttons_text_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -98,15 +98,15 @@
 
                 <Button
                     android:id="@+id/nextWord"
-                    android:stateListAnimator="@null"
                     style="@style/ButtonsOnFragmentWords"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:textColor="@color/buttons_text_color"
-                    android:background="@drawable/buttons_options"
                     android:layout_weight="1"
-                    android:text="@string/next_word" />
+                    android:background="@drawable/buttons_options"
+                    android:stateListAnimator="@null"
+                    android:text="@string/next_word"
+                    android:textColor="@color/buttons_text_color" />
             </LinearLayout>
 
 

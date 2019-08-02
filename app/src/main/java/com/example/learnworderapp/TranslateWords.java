@@ -3,24 +3,16 @@ package com.example.learnworderapp;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle; import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.content.Intent;
-import android.support.v7.widget.ShareActionProvider;
-import android.support.v4.view.MenuItemCompat;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.design.widget.TabLayout;
-import android.widget.Toast;
-
 
 public class TranslateWords extends AppCompatActivity {
 
@@ -46,30 +38,22 @@ public class TranslateWords extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
 
-        SQLiteOpenHelper worderDatabaseHelper = new LearnWorderDatabaseHelper(this);
+        ConnectDatabase connect = new ConnectDatabase(this);
+        db = connect.getDbReadable();
+        cursor = connect.getCursorAll();
 
-        try {
-            db = worderDatabaseHelper.getReadableDatabase(); // открытие базы на чтение
-            cursor = db.query("WORDS",
-                    new String[]{"_id", "WORD", "TRANSLATE"},
-                    null, null, null, null, null);
-            if (!cursor.moveToLast()){
+        if (!cursor.moveToLast()){
             AllertMessage();
             empty = true;
-            }
-
-        } catch(SQLiteException e) {
-            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
-            toast.show();
         }
     }
 
     private void AllertMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getLayoutInflater().getContext());
-        builder.setTitle("Внимание!")
-                .setMessage("Ваш словарь пуст, ничего выведено не будет. Вернитесь на главную страницу и добавьте слова")
+        builder.setTitle(R.string.attention)
+                .setMessage(R.string.empty_base)
                 .setCancelable(false)
-                .setNegativeButton("ОК",
+                .setNegativeButton(R.string.OK,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -121,6 +105,11 @@ public class TranslateWords extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+        cursor.close();
+    }
 }
 

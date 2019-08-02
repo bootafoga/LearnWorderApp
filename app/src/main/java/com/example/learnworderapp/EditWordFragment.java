@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -20,18 +18,20 @@ public class EditWordFragment  extends DialogFragment {
 
     private SQLiteDatabase db;
     private Cursor cursor;
-    private String wordKey, translateKey;
-    private View v;
     private EditText newWord, newTranslate;
-    private LayoutInflater inflater;
     private int id;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        View v;
+        LayoutInflater inflater;
         Bundle bundle = this.getArguments();
         id = bundle.getInt("id");
 
-        contactDatabase();
+        ConnectDatabase connect = new ConnectDatabase(getContext());
+        db = connect.getDbWritable();
+        cursor = connect.getCursorById(id);
+        cursor.moveToFirst();
 
         inflater = getActivity().getLayoutInflater();
         v = inflater.inflate(R.layout.edit_fragment, null);
@@ -55,32 +55,12 @@ public class EditWordFragment  extends DialogFragment {
 
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                try {
-                    //The problem starts
-                    //How do I get the reference to the EditText
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
             }
         });
 
         return builder.create();
     }
 
-    private void contactDatabase() {
-        SQLiteOpenHelper worderDatabaseHelper = new LearnWorderDatabaseHelper(getContext());
-        try {
-            db = worderDatabaseHelper.getReadableDatabase();
-            cursor = db.query("WORDS",
-                    new String[]{"_id", "WORD", "TRANSLATE"},
-                    "_id = ?", new String[] {Integer.toString(id)}, null, null, null);
-            cursor.moveToFirst();
-        } catch(SQLiteException e) {
-            Toast toast = Toast.makeText(getLayoutInflater().getContext(), "Database unavailable", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
 
     private void editButton() {
 
@@ -94,12 +74,20 @@ public class EditWordFragment  extends DialogFragment {
             db.update("WORDS", newVal, "_id = ?", new String[]{Integer.toString(id)});
 
             Intent intent = new Intent(getContext(), Dictionary.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
+            getActivity().overridePendingTransition(0,0);
 
         } else {
-
+            Toast toast = Toast.makeText(getLayoutInflater().getContext(), R.string.incorrect_input, Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        db.close();
+        cursor.close();
+    }
 }

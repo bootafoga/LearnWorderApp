@@ -2,8 +2,6 @@ package com.example.learnworderapp;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -21,21 +18,18 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
 
     private String type;
     private int imageTrue, imageFalse, bound;
-    private SQLiteDatabase db;
-    private Cursor cursor;
+    private Cursor cursor, cursorNew;
     private TextView word, translate;
     private ImageView pic;
     private boolean empty;
+    ConnectDatabase connect;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            cursor = db.query("WORDS",
-                    new String[]{"_id", "WORD", "TRANSLATE"},
-                    "_id = ?", new String[]{Integer.toString(savedInstanceState.getInt("current"))},
-                    null, null, null);
-            cursor.moveToNext();
+            cursorNew = connect.getCursorById(savedInstanceState.getInt("current"));
+            cursorNew.moveToNext();
         }
 
         Bundle bundle = this.getArguments();
@@ -50,8 +44,6 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         View layout;
         Button check, nextWord, showTranslate;
 
-
-        SQLiteOpenHelper worderDatabaseHelper = new LearnWorderDatabaseHelper(inflater.getContext());
         layout = inflater.inflate(R.layout.fragment_learn_words, container, false);
 
         check = (Button)layout.findViewById(R.id.checkTranslate);
@@ -70,28 +62,20 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         imageTrue = R.drawable.buttontrue;
         imageFalse = R.drawable.buttonfalse;
 
-        if (!empty) {
-            try {
-                db = worderDatabaseHelper.getReadableDatabase(); // открытие базы на чтение
-                cursor = db.query("WORDS",
-                        new String[]{"_id", "WORD", "TRANSLATE"},
-                        null, null, null, null, null);
-                if (cursor.moveToLast()) {
-                    //cursor.moveToLast();
-                    bound = cursor.getInt(0);
-                    cursor.moveToFirst();
-                }
+        connect = new ConnectDatabase(inflater.getContext());
+        cursor = connect.getCursorAll();
 
-            } catch (SQLiteException e) {
-                Toast toast = Toast.makeText(inflater.getContext(), "Database unavailable", Toast.LENGTH_SHORT);
-                toast.show();
+        if (!empty) {
+            if (cursor.moveToLast()) {
+                bound = cursor.getInt(0);
+                cursor.moveToFirst();
             }
 
             if (savedInstanceState != null) {
                 if (type.equals("eng")) {
-                    word.setText(cursor.getString(1));
+                    word.setText(cursorNew.getString(1));
                 } else {
-                    word.setText(cursor.getString(2));
+                    word.setText(cursorNew.getString(2));
                 }
             } else onClickNextWord();
 
@@ -140,35 +124,24 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
 
     private void onClickNextWord(){
         if (empty) return;
+        Cursor cursorNew;
         pic.setImageResource(0);
         translate.setText("");
         Random r = new Random();
         do {
             int current = 1 + r.nextInt(bound);
-            cursor = db.query("WORDS",
-                    new String[]{"_id", "WORD", "TRANSLATE"},
-                    "_id = ?", new String[]{Integer.toString(current)},
-                    null, null, null);
-        } while (!cursor.moveToFirst());
+            cursorNew = connect.getCursorById(current);
+        } while (!cursorNew.moveToFirst());
 
         if (type.equals("eng"))
-            word.setText(cursor.getString(1));
+            word.setText(cursorNew.getString(1));
         else
-            word.setText(cursor.getString(2));
+            word.setText(cursorNew.getString(2));
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("current", cursor.getInt(0));
-    }
-
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        if (!empty) {
-            cursor.close();
-            db.close();
-        }
+        outState.putInt("current", cursorNew.getInt(0));
     }
 }

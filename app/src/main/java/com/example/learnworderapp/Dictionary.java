@@ -1,14 +1,10 @@
 package com.example.learnworderapp;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +37,6 @@ public class Dictionary extends AppCompatActivity {
         Intent intent = new Intent(this, AddWord.class);
         startActivity(intent);
     }
-
 
     private class SectionsPagerAdapter2 extends FragmentPagerAdapter {
         public SectionsPagerAdapter2(FragmentManager fm) {
@@ -78,4 +73,10 @@ public class Dictionary extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+       //overridePendingTransition(0,0);
+    }
 }

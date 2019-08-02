@@ -4,5 +4,6 @@
     <string-array name="actions_array">
         <item>Редактировать запись</item>
         <item>Удалить запись</item>
+        <item>Переместить в выученные</item>
     </string-array>
 </resources>

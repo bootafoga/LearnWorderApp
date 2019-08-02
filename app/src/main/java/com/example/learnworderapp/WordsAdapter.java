@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class WordsAdapter extends
         RecyclerView.Adapter<WordsAdapter.ViewHolder> {
 
-    private ArrayList<String> wordsInDic;
-    private ArrayList<String> transInDic;
+    private LinkedList<String> wordsInDictionary;
+    private LinkedList<String> translatesInDictionary;
     private Listener listener;
 
     interface Listener {
@@ -22,7 +21,7 @@ public class WordsAdapter extends
 
     @Override
     public int getItemCount(){
-        return wordsInDic.size();
+        return wordsInDictionary.size();
     }
 
     @Override
@@ -31,13 +30,11 @@ public class WordsAdapter extends
         CardView cv = (CardView)LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.words_cards, parent, false);
         return new ViewHolder(cv);
-
     }
 
-
-    public WordsAdapter(ArrayList<String> words, ArrayList<String> translates){
-        this.wordsInDic = words;
-        this.transInDic = translates;
+    public WordsAdapter(LinkedList<String> words, LinkedList<String> translates){
+        this.wordsInDictionary = words;
+        this.translatesInDictionary = translates;
     }
 
     public void setListener(Listener listener){
@@ -54,16 +51,15 @@ public class WordsAdapter extends
         }
     }
 
-
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
         CardView cardView = holder.cardView;
 
         TextView textView = (TextView)cardView.findViewById(R.id.wordInDictionary1);
-        textView.setText(wordsInDic.get(position));
+        textView.setText(wordsInDictionary.get(position));
 
         TextView textView2 = (TextView)cardView.findViewById(R.id.translateInDictionary1);
-        textView2.setText(transInDic.get(position));
+        textView2.setText(translatesInDictionary.get(position));
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

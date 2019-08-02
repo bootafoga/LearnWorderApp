@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2Activity"></activity>
         <activity
             android:name=".AddWord"
             android:label="Добавление слова"

@@ -3,8 +3,6 @@
     <string name="learn_words">Учить слова</string>
     <string name="base">Мой словарь</string>
     <string name="translated_word">Введите перевод</string>
-    <string name="english_words">Английские слова</string>
-    <string name="russian_words">Русские слова</string>
     <string name="check">Проверить</string>
     <string name="show_translate">Показать\nперевод</string>
     <string name="next_word">Следующее\nслово</string>
@@ -21,10 +19,14 @@
     <string name="enterTranslate">Слово на родном языке</string>
     <string name="OK">Подтвердить</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pick_action">Выберите действие</string>
     <string name="edit_word">Изменить запись</string>
     <string name="cancel">Отмена</string>
-    <string name="pick_action_2">TEST TEST TEST</string>
+    <string name="done">Добавлено!</string>
+    <string name="incorrect_input">Неправильный ввод</string>
+    <string name="attention">Внимание!</string>
+    <string name="database_unavailable">База данных недоступна</string>
+    <string name="empty_base">Ваш словарь пуст, ничего выведено не будет. Вернитесь на главную страницу и добавьте слова</string>
+
+
 </resources>
