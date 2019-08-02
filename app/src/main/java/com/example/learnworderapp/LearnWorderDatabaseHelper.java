@@ -8,6 +8,9 @@ class LearnWorderDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "learnworder"; // Имя базы данных
     private static final int DB_VERSION = 1; // Версия базы данных
 
+    public void getVritableDatabase(){
+
+    }
         LearnWorderDatabaseHelper(Context context) {
             super(context, DB_NAME, null, DB_VERSION);
         }
@@ -16,8 +19,11 @@ class LearnWorderDatabaseHelper extends SQLiteOpenHelper {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE WORDS (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "WORD TEXT, "
-                    + "TRANSLATE TEXT); "
+                    + "TRANSLATE TEXT,"
+                    + "FLAG INTEGER); "
             );
+
+
         }
 
         @Override

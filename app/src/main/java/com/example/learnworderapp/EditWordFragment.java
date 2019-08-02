@@ -20,6 +20,7 @@ public class EditWordFragment  extends DialogFragment {
     private Cursor cursor;
     private EditText newWord, newTranslate;
     private int id;
+    private int num_page;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class EditWordFragment  extends DialogFragment {
         db = connect.getDbWritable();
         cursor = connect.getCursorById(id);
         cursor.moveToFirst();
+        num_page = cursor.getInt(3);
 
         inflater = getActivity().getLayoutInflater();
         v = inflater.inflate(R.layout.edit_fragment, null);
@@ -74,6 +76,7 @@ public class EditWordFragment  extends DialogFragment {
             db.update("WORDS", newVal, "_id = ?", new String[]{Integer.toString(id)});
 
             Intent intent = new Intent(getContext(), Dictionary.class);
+            intent.putExtra("num_page", num_page);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             getActivity().overridePendingTransition(0,0);

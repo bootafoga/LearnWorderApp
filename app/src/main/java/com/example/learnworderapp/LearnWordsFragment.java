@@ -18,7 +18,7 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
 
     private String type;
     private int imageTrue, imageFalse, bound;
-    private Cursor cursor, cursorNew;
+    private Cursor cursor;
     private TextView word, translate;
     private ImageView pic;
     private boolean empty;
@@ -27,10 +27,6 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            cursorNew = connect.getCursorById(savedInstanceState.getInt("current"));
-            cursorNew.moveToNext();
-        }
 
         Bundle bundle = this.getArguments();
         if (bundle != null){
@@ -63,22 +59,14 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         imageFalse = R.drawable.buttonfalse;
 
         connect = new ConnectDatabase(inflater.getContext());
-        cursor = connect.getCursorAll();
+        cursor = connect.getCursorAllNotLearned();
 
         if (!empty) {
             if (cursor.moveToLast()) {
                 bound = cursor.getInt(0);
                 cursor.moveToFirst();
             }
-
-            if (savedInstanceState != null) {
-                if (type.equals("eng")) {
-                    word.setText(cursorNew.getString(1));
-                } else {
-                    word.setText(cursorNew.getString(2));
-                }
-            } else onClickNextWord();
-
+            onClickNextWord();
         }
         return layout;
     }
@@ -137,11 +125,5 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
             word.setText(cursorNew.getString(1));
         else
             word.setText(cursorNew.getString(2));
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("current", cursorNew.getInt(0));
     }
 }

@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openDictionary(View view) {
+
         Intent intent = new Intent(this, Dictionary.class);
+        intent.putExtra("num_page", 0);
         startActivity(intent);
     }
 }

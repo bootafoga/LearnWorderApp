@@ -39,14 +39,16 @@ public class AddWord extends AppCompatActivity {
             ContentValues newWord = new ContentValues();
             newWord.put("WORD", usersWord);
             newWord.put("TRANSLATE", usersTranslate);
+            newWord.put("FLAG", 0);
             db.insert("WORDS", null, newWord);
 
             Toast toast = Toast.makeText(this, R.string.done, Toast.LENGTH_SHORT);
             toast.show();
 
-            Intent intent = new Intent(this, Dictionary.class);
+            /*Intent intent = new Intent(this, Dictionary.class);
+            intent.putExtra("num_page", 0);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(intent);*/
         } else {
             Toast toast = Toast.makeText(this, R.string.incorrect_input, Toast.LENGTH_SHORT);
             toast.show();

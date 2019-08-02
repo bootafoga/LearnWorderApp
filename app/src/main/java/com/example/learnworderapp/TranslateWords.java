@@ -40,7 +40,7 @@ public class TranslateWords extends AppCompatActivity {
 
         ConnectDatabase connect = new ConnectDatabase(this);
         db = connect.getDbReadable();
-        cursor = connect.getCursorAll();
+        cursor = connect.getCursorAllNotLearned();
 
         if (!cursor.moveToLast()){
             AllertMessage();

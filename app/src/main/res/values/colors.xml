@@ -8,4 +8,5 @@
     <color name="toolbar_color_control_normal">#000000</color>
     <color name="buttons_text_color">#474646</color>
     <color name="phrase_text_color">#2F422F</color>
+    <color name="tint">#858181</color>
 </resources>

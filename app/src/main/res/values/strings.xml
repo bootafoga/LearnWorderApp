@@ -20,7 +20,7 @@
     <string name="OK">Подтвердить</string>
 
     <string name="pick_action">Выберите действие</string>
-    <string name="edit_word">Изменить запись</string>
+    <string name="edit_word">Редактировать запись</string>
     <string name="cancel">Отмена</string>
     <string name="done">Добавлено!</string>
     <string name="incorrect_input">Неправильный ввод</string>

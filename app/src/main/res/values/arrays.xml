@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="actions_array">
+    <string-array name="actions_array_notlearned">
         <item>Редактировать запись</item>
         <item>Удалить запись</item>
         <item>Переместить в выученные</item>
+    </string-array>
+
+    <string-array name="actions_array_learned">
+        <item>Редактировать запись</item>
+        <item>Удалить запись</item>
+        <item>Переместить в невыученные</item>
     </string-array>
 </resources>
