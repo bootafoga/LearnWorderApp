@@ -1,7 +1,6 @@
 package com.example.learnworderapp;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -44,11 +43,6 @@ public class AddWord extends AppCompatActivity {
 
             Toast toast = Toast.makeText(this, R.string.done, Toast.LENGTH_SHORT);
             toast.show();
-
-            /*Intent intent = new Intent(this, Dictionary.class);
-            intent.putExtra("num_page", 0);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);*/
         } else {
             Toast toast = Toast.makeText(this, R.string.incorrect_input, Toast.LENGTH_SHORT);
             toast.show();

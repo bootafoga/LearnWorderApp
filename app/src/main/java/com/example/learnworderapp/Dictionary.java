@@ -18,6 +18,16 @@ public class Dictionary extends AppCompatActivity {
     private ConnectDatabase connect;
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent = new Intent(this, Dictionary.class);
+        intent.putExtra("num_page", 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
