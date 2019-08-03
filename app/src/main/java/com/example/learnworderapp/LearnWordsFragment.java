@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -62,10 +63,8 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         cursor = connect.getCursorAllNotLearned();
 
         if (!empty) {
-            if (cursor.moveToLast()) {
-                bound = cursor.getInt(0);
-                cursor.moveToFirst();
-            }
+            bound = connect.getCountNotLearned();
+            cursor.moveToFirst();
             onClickNextWord();
         }
         return layout;
@@ -112,18 +111,22 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
 
     private void onClickNextWord(){
         if (empty) return;
-        Cursor cursorNew;
+        cursor.moveToFirst();
         pic.setImageResource(0);
         translate.setText("");
         Random r = new Random();
-        do {
-            int current = 1 + r.nextInt(bound);
-            cursorNew = connect.getCursorById(current);
-        } while (!cursorNew.moveToFirst());
+        
+        int position = r.nextInt(bound);
+        int current = 0;
+
+        while (current != position){
+            cursor.moveToNext();
+            current++;
+        }
 
         if (type.equals("eng"))
-            word.setText(cursorNew.getString(1));
+            word.setText(cursor.getString(1));
         else
-            word.setText(cursorNew.getString(2));
+            word.setText(cursor.getString(2));
     }
 }

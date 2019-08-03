@@ -49,14 +49,14 @@ public class ConnectDatabase {
     public Cursor getCursorAllNotLearned() {
         cursorAllNotLearned = dbReadable.query("WORDS",
                 new String[]{"_id", "WORD", "TRANSLATE", "FLAG"},
-                "FLAG = ?", new String[]{Integer.toString(0)}, null, null, null);
+                "FLAG = ?", new String[]{Integer.toString(0)}, null, null, "WORD ASC");
         return cursorAllNotLearned;
     }
 
     public Cursor getCursorAllLearned() {
         cursorAllLearned = dbReadable.query("WORDS",
                 new String[]{"_id", "WORD", "TRANSLATE", "FLAG"},
-                "FLAG = ?", new String[]{Integer.toString(1)}, null, null, null);
+                "FLAG = ?", new String[]{Integer.toString(1)}, null, null, "WORD ASC");
         return cursorAllLearned;
     }
 
@@ -64,7 +64,7 @@ public class ConnectDatabase {
         Cursor cursorById;
         cursorById = dbReadable.query("WORDS",
                 new String[]{"_id", "WORD", "TRANSLATE", "FLAG"},
-                "_id = ?", new String[] {Integer.toString(id)}, null, null, null);
+                "_id = ?", new String[] {Integer.toString(id)}, null, null, "WORD ASC");
         return cursorById;
     }
 
