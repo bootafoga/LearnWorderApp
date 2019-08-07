@@ -115,7 +115,7 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         pic.setImageResource(0);
         translate.setText("");
         Random r = new Random();
-        
+
         int position = r.nextInt(bound);
         int current = 0;
 

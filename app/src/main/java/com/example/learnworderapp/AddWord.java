@@ -2,6 +2,7 @@ package com.example.learnworderapp;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,32 +20,51 @@ public class AddWord extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public void onClickAddWord(View view) {
+        new AddNewWord().execute();
+    }
 
-        TextView word = (TextView)findViewById(R.id.enterWord);
-        TextView translate = (TextView)findViewById(R.id.enterTranslate);
-        String usersWord = word.getText().toString();
-        String usersTranslate = translate.getText().toString();
+    private class AddNewWord extends AsyncTask<Void, Void, Boolean>{
 
+        String usersWord;
+        String usersTranslate;
         SQLiteDatabase db;
-        ConnectDatabase connect = new ConnectDatabase(this);
-        db = connect.getDbWritable();
 
-        if (!usersWord.equals("") && !usersTranslate.equals("")){
-            ContentValues newWord = new ContentValues();
-            newWord.put("WORD", usersWord);
-            newWord.put("TRANSLATE", usersTranslate);
-            newWord.put("FLAG", 0);
-            db.insert("WORDS", null, newWord);
+        protected void onPreExecute() {
 
-            Toast toast = Toast.makeText(this, R.string.done, Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            Toast toast = Toast.makeText(this, R.string.incorrect_input, Toast.LENGTH_SHORT);
+            TextView word = (TextView)findViewById(R.id.enterWord);
+            TextView translate = (TextView)findViewById(R.id.enterTranslate);
+            usersWord = word.getText().toString();
+            usersTranslate = translate.getText().toString();
+
+            ConnectDatabase connect = new ConnectDatabase(AddWord.this);
+            db = connect.getDbWritable();
+        }
+
+        protected Boolean doInBackground(Void ... voids) {
+
+            if (!usersWord.equals("") && !usersTranslate.equals("")){
+                ContentValues newWord = new ContentValues();
+                newWord.put("WORD", usersWord);
+                newWord.put("TRANSLATE", usersTranslate);
+                newWord.put("FLAG", 0);
+                db.insert("WORDS", null, newWord);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        protected void onPostExecute(Boolean success) {
+            //Код, выполняемый при завершении задачи
+            Toast toast;
+            if (success) toast = Toast.makeText(AddWord.this, R.string.done, Toast.LENGTH_SHORT);
+            else toast = Toast.makeText(AddWord.this, R.string.incorrect_input, Toast.LENGTH_SHORT);
             toast.show();
         }
     }
