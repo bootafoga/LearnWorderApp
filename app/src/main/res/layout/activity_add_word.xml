@@ -46,9 +46,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:ems="10"
                 android:hint="@string/enterWord"
-                android:inputType="textPersonName"
+                android:inputType="textCapSentences"
                 android:textSize="24dp" />
         </LinearLayout>
 
@@ -64,9 +63,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:ems="10"
+                android:inputType="textCapSentences"
                 android:hint="@string/enterTranslate"
-                android:inputType="textPersonName"
                 android:textSize="24dp" />
         </LinearLayout>
 

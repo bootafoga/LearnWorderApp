@@ -11,17 +11,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AddWord"
+            android:screenOrientation="portrait"
             android:label="Добавление слова"
             android:parentActivityName=".Dictionary" />
         <activity
             android:name=".Dictionary"
+            android:screenOrientation="portrait"
             android:label="Словарь"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TranslateWords"
+            android:screenOrientation="portrait"
             android:label="Учить слова"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

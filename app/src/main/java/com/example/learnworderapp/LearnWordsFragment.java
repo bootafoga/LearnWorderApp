@@ -91,11 +91,11 @@ public class LearnWordsFragment extends Fragment implements View.OnClickListener
         userInput = translate.getText().toString();
 
         if (type.equals("rus")){
-            if (userInput.equalsIgnoreCase(cursor.getString(1)))
+            if (userInput.trim().equalsIgnoreCase(cursor.getString(1)))
                 pic.setImageResource(imageTrue);
             else pic.setImageResource(imageFalse);
         } else {
-            if (userInput.equalsIgnoreCase(cursor.getString(2)))
+            if (userInput.trim().equalsIgnoreCase(cursor.getString(2)))
                 pic.setImageResource(imageTrue);
             else pic.setImageResource(imageFalse);
         }

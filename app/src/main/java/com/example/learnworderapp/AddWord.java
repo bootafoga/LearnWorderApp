@@ -48,7 +48,7 @@ public class AddWord extends AppCompatActivity {
 
         protected Boolean doInBackground(Void ... voids) {
 
-            if (!usersWord.equals("") && !usersTranslate.equals("")){
+            if (!usersWord.trim().equals("") && !usersTranslate.trim().equals("")){
                 ContentValues newWord = new ContentValues();
                 newWord.put("WORD", usersWord);
                 newWord.put("TRANSLATE", usersTranslate);
