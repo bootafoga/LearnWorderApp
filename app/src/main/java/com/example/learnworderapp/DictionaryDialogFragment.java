@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.util.LinkedList;
 
 
-public class DictionaryFragment extends DialogFragment  {
+public class DictionaryDialogFragment extends DialogFragment  {
 
     private SQLiteDatabase db;
     private Cursor cursor;

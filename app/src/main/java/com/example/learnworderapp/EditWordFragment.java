@@ -75,7 +75,7 @@ public class EditWordFragment  extends DialogFragment {
             newVal.put("TRANSLATE", newUsersTranslate);
             db.update("WORDS", newVal, "_id = ?", new String[]{Integer.toString(id)});
 
-            Intent intent = new Intent(getContext(), Dictionary.class);
+            Intent intent = new Intent(getContext(), DictionaryActivity.class);
             intent.putExtra("num_page", num_page);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);

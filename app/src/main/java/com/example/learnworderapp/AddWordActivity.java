@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddWord extends AppCompatActivity {
+public class AddWordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class AddWord extends AppCompatActivity {
             usersWord = word.getText().toString();
             usersTranslate = translate.getText().toString();
 
-            ConnectDatabase connect = new ConnectDatabase(AddWord.this);
+            ConnectDatabase connect = new ConnectDatabase(AddWordActivity.this);
             db = connect.getDbWritable();
         }
 
@@ -63,8 +63,8 @@ public class AddWord extends AppCompatActivity {
         protected void onPostExecute(Boolean success) {
             //Код, выполняемый при завершении задачи
             Toast toast;
-            if (success) toast = Toast.makeText(AddWord.this, R.string.done, Toast.LENGTH_SHORT);
-            else toast = Toast.makeText(AddWord.this, R.string.incorrect_input, Toast.LENGTH_SHORT);
+            if (success) toast = Toast.makeText(AddWordActivity.this, R.string.done, Toast.LENGTH_SHORT);
+            else toast = Toast.makeText(AddWordActivity.this, R.string.incorrect_input, Toast.LENGTH_SHORT);
             toast.show();
         }
     }

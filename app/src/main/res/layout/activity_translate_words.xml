@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background2shiny2"
     android:orientation="vertical"
-    tools:context=".TranslateWords">
+    tools:context=".TranslateWordsActivity">
 
 
     <android.support.design.widget.AppBarLayout

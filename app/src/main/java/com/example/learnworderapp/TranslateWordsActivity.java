@@ -14,7 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.design.widget.TabLayout;
 
-public class TranslateWords extends AppCompatActivity {
+public class TranslateWordsActivity extends AppCompatActivity {
 
     private Cursor cursor;
     private SQLiteDatabase db;

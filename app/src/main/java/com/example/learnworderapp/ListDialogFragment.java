@@ -67,7 +67,7 @@ public class ListDialogFragment extends DialogFragment {
             newFragment.show(getFragmentManager(), "missiles");
         } else if (userChoise == 1) { // delete
             db.delete("WORDS", "_id = ?", new String[]{Integer.toString(cursor.getInt(0))});
-            Intent intent = new Intent(getContext(), Dictionary.class);
+            Intent intent = new Intent(getContext(), DictionaryActivity.class);
             intent.putExtra("delete", true);
             intent.putExtra("num_page",cursor.getInt(3));
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -82,7 +82,7 @@ public class ListDialogFragment extends DialogFragment {
             ContentValues newVal = new ContentValues();
             newVal.put("FLAG", flag);
             db.update("WORDS", newVal, "_id = ?", new String[]{Integer.toString(cursor.getInt(0))});
-            Intent intent = new Intent(getContext(), Dictionary.class);
+            Intent intent = new Intent(getContext(), DictionaryActivity.class);
             intent.putExtra("delete", true);
             intent.putExtra("num_page",cursor.getInt(3));
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);

@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnClickLearnWords(View view) {
-        Intent intent = new Intent(this, TranslateWords.class);
+        Intent intent = new Intent(this, TranslateWordsActivity.class);
         startActivity(intent);
     }
 
     public void openDictionary(View view) {
 
-        Intent intent = new Intent(this, Dictionary.class);
+        Intent intent = new Intent(this, DictionaryActivity.class);
         intent.putExtra("num_page", 0);
         startActivity(intent);
     }

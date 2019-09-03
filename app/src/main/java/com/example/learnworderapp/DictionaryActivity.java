@@ -1,7 +1,6 @@
 package com.example.learnworderapp;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,14 +12,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class Dictionary extends AppCompatActivity {
+public class DictionaryActivity extends AppCompatActivity {
 
     private ConnectDatabase connect;
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Intent intent = new Intent(this, Dictionary.class);
+        Intent intent = new Intent(this, DictionaryActivity.class);
         intent.putExtra("num_page", 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -57,7 +56,7 @@ public class Dictionary extends AppCompatActivity {
     }
 
     public void onClickAdd(View view) {
-        Intent intent = new Intent(this, AddWord.class);
+        Intent intent = new Intent(this, AddWordActivity.class);
         startActivity(intent);
     }
 
@@ -74,7 +73,7 @@ public class Dictionary extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Bundle bundle = new Bundle();
-            DictionaryFragment frag = new DictionaryFragment();
+            DictionaryDialogFragment frag = new DictionaryDialogFragment();
             switch (position) {
                 case 0:
                     bundle.putString("type", "not_learned");

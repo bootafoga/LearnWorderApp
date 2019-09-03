@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AddWord"
+            android:name=".AddWordActivity"
             android:screenOrientation="portrait"
             android:label="Добавление слова"
-            android:parentActivityName=".Dictionary" />
+            android:parentActivityName=".DictionaryActivity" />
         <activity
-            android:name=".Dictionary"
+            android:name=".DictionaryActivity"
             android:screenOrientation="portrait"
             android:label="Словарь"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".TranslateWords"
+            android:name=".TranslateWordsActivity"
             android:screenOrientation="portrait"
             android:label="Учить слова"
             android:parentActivityName=".MainActivity" />
