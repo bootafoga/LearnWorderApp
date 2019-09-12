@@ -27,6 +27,9 @@
     <string name="attention">Внимание!</string>
     <string name="database_unavailable">База данных недоступна</string>
     <string name="empty_base">Ваш словарь пуст, ничего выведено не будет. Вернитесь на главную страницу и добавьте слова</string>
+    <string name="add_word">Добавление слова</string>
+    <string name="dictionary">Словарь</string>
+    <string name="learn_words">Учить слова</string>
 
 
 </resources>

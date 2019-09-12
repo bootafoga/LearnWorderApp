@@ -36,7 +36,6 @@ public class AddWordActivity extends AppCompatActivity {
         SQLiteDatabase db;
 
         protected void onPreExecute() {
-
             TextView word = (TextView)findViewById(R.id.enterWord);
             TextView translate = (TextView)findViewById(R.id.enterTranslate);
             usersWord = word.getText().toString();
@@ -61,7 +60,7 @@ public class AddWordActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(Boolean success) {
-            //Код, выполняемый при завершении задачи
+
             Toast toast;
             if (success) toast = Toast.makeText(AddWordActivity.this, R.string.done, Toast.LENGTH_SHORT);
             else toast = Toast.makeText(AddWordActivity.this, R.string.incorrect_input, Toast.LENGTH_SHORT);

@@ -12,17 +12,17 @@
         <activity
             android:name=".AddWordActivity"
             android:screenOrientation="portrait"
-            android:label="Добавление слова"
+            android:label="@string/add_word"
             android:parentActivityName=".DictionaryActivity" />
         <activity
             android:name=".DictionaryActivity"
             android:screenOrientation="portrait"
-            android:label="Словарь"
+            android:label="@string/dictionary"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TranslateWordsActivity"
             android:screenOrientation="portrait"
-            android:label="Учить слова"
+            android:label="@string/learn_words"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
